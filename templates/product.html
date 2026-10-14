@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block title %}{{ product["name"] }}{% endblock %}
+
+{% block content %}
+<article class="product-detail">
+    <span class="category">{{ product["category"] }}</span>
+    <h1>{{ product["name"] }}</h1>
+    <p>{{ product["description"] }}</p>
+
+    <table>
+        <tr>
+            <th>توان</th>
+            <td>{{ product["power"] or "-" }}</td>
+        </tr>
+        <tr>
+            <th>ولتاژ</th>
+            <td>{{ product["voltage"] or "-" }}</td>
+        </tr>
+        <tr>
+            <th>جریان</th>
+            <td>{{ product["current"] or "-" }}</td>
+        </tr>
+    </table>
+
+    <a class="button"
+       href="{{ url_for(
+           'quote',
+           product_id=product['id']
+       ) }}">
+        درخواست قیمت این محصول
+    </a>
+</article>
+{% endblock %}

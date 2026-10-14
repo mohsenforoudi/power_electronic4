@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}درخواست ارسال شد{% endblock %}
+
+{% block content %}
+<section class="success">
+    <h1>درخواست شما ثبت شد</h1>
+    <p>
+        کارشناسان ما پس از بررسی اطلاعات با شما تماس خواهند گرفت.
+    </p>
+
+    <a class="button" href="{{ url_for('index') }}">
+        بازگشت به کاتالوگ
+    </a>
+</section>
+{% endblock %}

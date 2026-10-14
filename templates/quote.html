@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block title %}درخواست قیمت{% endblock %}
+
+{% block content %}
+<section class="form-section">
+    <h1>درخواست قیمت</h1>
+    <p>
+        اطلاعات خود را وارد کنید تا کارشناسان ما با شما تماس بگیرند.
+    </p>
+
+    {% if error %}
+    <div class="error">{{ error }}</div>
+    {% endif %}
+
+    <form method="post">
+        <label for="product_id">محصول</label>
+        <select id="product_id" name="product_id">
+            <option value="">انتخاب محصول</option>
+
+            {% for product in products %}
+            <option value="{{ product['id'] }}"
+                {% if product['id'] == selected_id %}
+                selected
+                {% endif %}>
+                {{ product['name'] }}
+            </option>
+            {% endfor %}
+        </select>
+
+        <label for="name">نام و نام خانوادگی</label>
+        <input id="name" name="name" required>
+
+        <label for="phone">شماره تماس</label>
+        <input id="phone" name="phone" required>
+
+        <label for="email">ایمیل</label>
+        <input id="email" name="email" type="email">
+
+        <label for="quantity">تعداد مورد نیاز</label>
+        <input id="quantity" name="quantity">
+
+        <label for="message">توضیحات</label>
+        <textarea id="message" name="message" rows="5"></textarea>
+
+        <button type="submit">ارسال درخواست</button>
+    </form>
+</section>
+{% endblock %}

@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+{% block title %}کاتالوگ محصولات{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <h1>تجهیزات الکترونیک ver04 قدرت</h1>
+
+    <p>
+        تأمین انواع اینورتر، ماژول قدرت، رکتیفایر و تجهیزات صنعتی.
+    </p>
+
+    <a class="button" href="{{ url_for('quote') }}">
+        درخواست قیمت
+    </a>
+</section>
+
+<form class="search-form"
+      method="get"
+      action="{{ url_for('index') }}">
+
+    <input
+        type="search"
+        name="q"
+        value="{{ query }}"
+        placeholder="جست‌وجوی محصول..."
+    >
+
+    <button type="submit">جست‌وجو</button>
+</form>
+
+<h2>محصولات</h2>
+
+<div class="product-grid">
+    {% for product in products %}
+    <article class="product-card">
+
+        {% if product["image"] %}
+        <img
+            class="product-image"
+            src="{{ url_for(
+                'static',
+                filename='images/products/' ~ product['image']
+            ) }}"
+            alt="{{ product['name'] }}"
+        >
+        {% else %}
+        <div class="image-placeholder">
+            تصویر محصول
+        </div>
+        {% endif %}
+
+        <span class="category">
+            {{ product["category"] }}
+        </span>
+
+        <h3>{{ product["name"] }}</h3>
+
+        <p>{{ product["description"] }}</p>
+
+        <p>
+            <strong>توان:</strong>
+            {{ product["power"] or "درخواستی" }}
+        </p>
+
+        <a
+            class="button secondary"
+            href="{{ url_for(
+                'product_detail',
+                product_id=product['id']
+            ) }}"
+        >
+            مشاهده جزئیات
+        </a>
+    </article>
+    {% else %}
+    <p>محصولی پیدا نشد.</p>
+    {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1">
+    <title>{% block title %}پاور halleh الکترونیک{% endblock %}</title>
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container header-content">
+            <a class="brand" href="{{ url_for('index') }}">
+             هاله   پاور الکترونیک
+            </a>
+
+            <nav>
+                <a href="{{ url_for('index') }}"> هاله محصولات</a>
+                <a href="{{ url_for('quote') }}">درخواست قیمت</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+           ver04 تجهیزات الکترونیک قدرت با کیفیت صنعتی
+        </div>
+    </footer>
+</body>
+</html>
