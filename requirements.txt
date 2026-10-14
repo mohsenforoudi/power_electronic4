@@ -1,5 +1,2 @@
-Path
 Flask
-sqlite3
-flask
 gunicorn
